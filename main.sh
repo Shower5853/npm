@@ -1,4 +1,4 @@
-REPO_URL="https://raw.githubusercontent.com/Shower5853/npm-repo/refs/heads/main/"
+REPO_URL="https://raw.githubusercontent.com/Shower5853/npm-repo/refs/heads/main"
 
 check_package_exists() {
 	local package="$1"
@@ -13,7 +13,7 @@ check_package_exists() {
 
 if [ "$1" = "install" ]; then
 	PACKAGE="$2"
-	if [ check_package_exists "$PACKAGE" ]; then
+	if check_package_exists "$PACKAGE"; then
 		echo "Package ${PACKAGE} found!"
 		
 		echo "Download? [Y/n]"
@@ -23,7 +23,7 @@ if [ "$1" = "install" ]; then
 		if [[ $REPLY =~ ^[Yy]$ ]]; then
 			wget -O /tmp/install_package_npm.sh ${REPO_URL}/${PACKAGE}/install.sh
 			chmod +x /tmp/install_package_npm.sh
-			sudo /tmp/install_package_npm.sh
+			/tmp/install_package_npm.sh
 			rm -rf /tmp/install_package_npm.sh
 		else
 			exit 0
@@ -31,3 +31,4 @@ if [ "$1" = "install" ]; then
 	else
 		echo "Package ${PACKAGE} doesn't exist!"
 	fi
+fi
