@@ -21,7 +21,7 @@ check_package_installed() {
 }
 
 if [ "$1" = "install" ]; then
-	local PACKAGE="$2"
+	PACKAGE="$2"
 	if check_package_exists "$PACKAGE"; then
 		echo "Package ${PACKAGE} found!"
 		
@@ -35,7 +35,7 @@ if [ "$1" = "install" ]; then
 			/tmp/install_package_npman.sh
 			rm -rf /tmp/install_package_npman.sh
 
-			echo "$PACKAGE" >> "$INSTALLED_PACKAGES_FILE"
+			sudo echo "$PACKAGE" >> "$INSTALLED_PACKAGES_FILE"
 		else
 			exit 0
 		fi
@@ -43,7 +43,7 @@ if [ "$1" = "install" ]; then
 		echo "Package ${PACKAGE} doesn't exist!"
 	fi
 elif [ "$1" = "remove" ]; then
-	local PACKAGE="$2"
+	PACKAGE="$2"
 	if check_package_installed "$PACKAGE"; then
 		echo "Package ${PACKAGE} found in system!"
 
@@ -57,8 +57,8 @@ elif [ "$1" = "remove" ]; then
 			/tmp/remove_package_npman
 			rm -rf /tmp/remove_package_npman
 
-			grep -v "^${PACKAGE}$" "$INSTALLED_PACKAGES_FILE" > "${INSTALLED_PACKAGES_FILE}.tmp"
-			mv "${INSTALLED_PACKAGES_FILEL}.tmp" "$INSTALLED_PACKAGES_FILE"
+			sudo grep -v "^${PACKAGE}$" "$INSTALLED_PACKAGES_FILE" > "${INSTALLED_PACKAGES_FILE}.tmp"
+			sudo mv "${INSTALLED_PACKAGES_FILEL}.tmp" "$INSTALLED_PACKAGES_FILE"
 		else
 			exit 0
 		fi
