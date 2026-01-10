@@ -58,7 +58,7 @@ elif [ "$1" = "remove" ]; then
 			rm -rf /tmp/remove_package_npman
 
 			sudo grep -v "^${PACKAGE}$" "$INSTALLED_PACKAGES_FILE" > "${INSTALLED_PACKAGES_FILE}.tmp"
-			sudo mv "${INSTALLED_PACKAGES_FILEL}.tmp" "$INSTALLED_PACKAGES_FILE"
+			sudo mv "${INSTALLED_PACKAGES_FILE}.tmp" "$INSTALLED_PACKAGES_FILE"
 		else
 			exit 0
 		fi
